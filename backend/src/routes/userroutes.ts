@@ -1,4 +1,5 @@
-import { PrismaClient } from "@prisma/client/extension";
+import { PrismaClient } from '@prisma/client/edge';
+
 import { withAccelerate } from "@prisma/extension-accelerate";
 import { Hono } from "hono";
 import { sign } from "hono/jwt";
@@ -9,7 +10,7 @@ userRouter.post('/signup', async (c) => {
     const prisma = new PrismaClient({
         datasourceUrl: c.env.DATABASE_URL,
     }).$extends(withAccelerate());
-
+    
     const body = await c.req.json();
     const user = await prisma.user.create({
         data: {
@@ -23,13 +24,27 @@ userRouter.post('/signup', async (c) => {
         jwt: token
     })
 })
+userRouter.get('/allUsers',async (c)=>{
+    const prisma = new PrismaClient({
+        datasourceUrl: c.env.DATABASE_URL,
+    }).$extends(withAccelerate());
+    const all = await prisma.user.findMany();
+    return c.json({
+        all:all
+    })
+
+
+})
 
 userRouter.post('/signin', async (c) => {
     const prisma = new PrismaClient({
         datasourceUrl: c.env.DATABASE_URL,
     }).$extends(withAccelerate());
+    
+  
+
     const body = await c.req.json();
-    const user = await prisma.user.findUnique({
+    const user = await prisma.user.findFirst({
         where: {
             email: body.email,
             password: body.password
