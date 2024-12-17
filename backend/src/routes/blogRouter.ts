@@ -21,8 +21,8 @@ blogRouter.use('/*', async (c, next) => {
     try {
         const user = await verify(token, c.env.secret);
         if (user && user.id) {
-            c.set("userId", user.id as string); // Set userId in context variables
-            await next(); // Ensure the next middleware/handler is executed
+            c.set("userId", user.id as string); 
+            await next(); 
         } else {
             c.status(403);
             return c.json({ error: "Unauthorized" });
@@ -77,7 +77,18 @@ blogRouter.get('/bulk', async (c) => {
         datasourceUrl: c.env.DATABASE_URL
     }).$extends(withAccelerate());
     try {
-        const blogs = await prisma.post.findMany();
+        const blogs = await prisma.post.findMany({
+            select:{
+                title: true,
+                content: true,
+                id : true,
+                author :{
+                    select:{
+                        name: true
+                    }
+                }
+            }
+        });
 
         return c.json({
             blogs: blogs
@@ -101,6 +112,16 @@ blogRouter.get('/:id', async (c) => {
         const blog = await prisma.post.findUnique({
             where: {
                 id: id
+            },
+            select:{
+                id:true,
+                title: true,
+                content: true,
+                author: {
+                    select:{
+                        name:true
+                    }
+                }
             }
         })
         return c.json({

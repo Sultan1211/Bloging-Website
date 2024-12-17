@@ -1,29 +1,31 @@
 import React from 'react'
+import { Link } from 'react-router-dom';
 
 interface BlogCardProps {
+    id:string
     authorName: string;
     title: string;
     content: string;
     publishedDate: string
 }
 
-function BlogCard({ authorName, title, content, publishedDate }: BlogCardProps) {
-    return (
-        <div className='p-4 border-b-2 border-slate-100'>
+function BlogCard({id, authorName, title, content, publishedDate }: BlogCardProps) {
+    return (<Link to={`/blog/${id}`}>
+        <div className='p-4 border-b-2 border-slate-200  max-w-screen-md mx-auto cursor-pointer'>
             <div className='flex'>
                 <div className='flex justify-center flex-col'>
-                    <Avatar name={authorName} />
+                    <Avatar name={authorName} size="small" />
                 </div>
                 <div className='flex mt-1'>
-                <div className='font-extralight px-2 text-sm'>
-                    {authorName}
-                </div>
-                <div className=''>
-                    &#128900;
-                </div>
-                <div className='font-thin text-slate-500 mx-2 text-sm'>
-                    {publishedDate}
-                </div>
+                    <div className='font-extralight px-2 text-sm'>
+                        {authorName}
+                    </div>
+                    <div className=''>
+                        &#128900;
+                    </div>
+                    <div className='font-thin text-slate-500 mx-2 text-sm'>
+                        {publishedDate}
+                    </div>
                 </div>
             </div>
             <div className='text-xl font-semibold'>
@@ -38,11 +40,15 @@ function BlogCard({ authorName, title, content, publishedDate }: BlogCardProps) 
 
         </div>
 
+
+    </Link>
+
+
     )
 }
-function Avatar({ name }: { name: string }) {
-    return <div className="relative inline-flex items-center justify-center w-5 h-5 overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600">
-        <span className="font-normal text-xs text-gray-300">{name[0]}</span>
+export function Avatar({ name, size }: { name: string, size: "small" | "big" }) {
+    return <div className={`relative inline-flex items-center justify-center ${size === "small" ? "w-5 h-5" : "w-10 h-10"} overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600`}>
+        <span className={`font-normal ${size === "small" ? "text-xs" : "text-lg uppercase font-semibold"} text-gray-200`}>{name[0]}</span>
     </div>
 
 }
