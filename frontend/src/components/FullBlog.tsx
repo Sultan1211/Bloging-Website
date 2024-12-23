@@ -3,7 +3,7 @@ import Appbar from './Appbar'
 import { Avatar } from './BlogCard'
 import { Blog } from '../hooks'
 
-function FullBlog({blog}: {blog:Blog}) {
+function FullBlog({ blog }: { blog: Blog }) {
     return (
         <div className='h-screen'>
             <Appbar />
@@ -16,7 +16,7 @@ function FullBlog({blog}: {blog:Blog}) {
                         Published on Dec 2nd 2024
                     </div>
                     <div className='pt-4 text-'>
-                       {blog.content}
+                        {blog.content}
 
                     </div>
                 </div>
@@ -26,19 +26,19 @@ function FullBlog({blog}: {blog:Blog}) {
                     </div>
                     <div className='flex items-center p-3'>
                         <div className='pr-2'>
-                           <Avatar size={"big"} name={blog.author?.name || "Anonymous"} />
+                            <Avatar size={"big"} name={blog.author.name || "Anonymous"} />
                         </div>
                         <div className='pl-1.5'>
-                        <div className='text-lg font-semibold '>
-                            Author Name
+                            <div className='text-lg font-semibold '>
+                                {blog.author.name}
+                            </div>
+                            <div className='text-slate-600 text-sm font-light'>
+                                This is the catch phrace for the author placed under the name of the author
+                            </div>
                         </div>
-                        <div className='text-slate-600 text-sm font-light'>
-                          This is the catch phrace for the author placed under the name of the author
-                        </div>
-                        </div>
-                       
+
                     </div>
-                    
+
 
 
                 </div>

@@ -15,11 +15,20 @@ function Auth({ type }: { type: "signup" | "signin" }) {
     });
    
     async function sendRequest() {
+        const inName: string | undefined = inputs.name
         try {
             const response = await axios.post(`${BACKEND_URL}/api/v1/user/${type}`, inputs);
-            const { jwt } = response.data; // Assuming response contains the JWT
-            localStorage.setItem("token", jwt);
-            navigate("/blogs");
+            const { jwt } = response.data;
+            if(!jwt){
+                alert("Invalid User");
+            }
+            if(jwt){
+                localStorage.setItem("token", jwt);
+                localStorage.setItem("name",inName || "");
+                navigate("/blogs");
+            }
+           
+            
         } catch (e:any) {
             console.error("Error in sign-up/sign-in:", e);
             alert(e.response?.data?.msg || "An unexpected error occurred");
@@ -40,7 +49,7 @@ function Auth({ type }: { type: "signup" | "signin" }) {
                         </div>
                     </div>
                     {type === "signup" ? <div>
-                        <InputFields label="Name" placeholder='Andrew Tate' onChange={(e) => {
+                        <InputFields label="Name" placeholder='Tyler Durden' onChange={(e) => {
                             setInputs(c => ({
                                 ...c,
                                 name: e.target.value
@@ -48,7 +57,7 @@ function Auth({ type }: { type: "signup" | "signin" }) {
                         }} />
                     </div> : null}
                     <div>
-                        <InputFields label="UserName" placeholder='AndrewT@gmail.com' onChange={(e) => {
+                        <InputFields label="UserName" placeholder='TylerDurden@gmail.com' onChange={(e) => {
                             setInputs(c => ({
                                 ...c,
                                 email: e.target.value
@@ -64,8 +73,14 @@ function Auth({ type }: { type: "signup" | "signin" }) {
                         }} />
                     </div>
                     <div className='pt-5'>
-                        <button onClick={sendRequest} type="button" className="text-white w-full bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2">{type === "signup" ? "Sign Up" : "Sign In"}</button>
 
+                    <button onClick={sendRequest} className="inline-flex w-full h-12 animate-shimmer items-center justify-center rounded-md border border-slate-800 bg-[linear-gradient(110deg,#000000,45%,rgba(255,255,255,0.6),55%,#000000)] bg-black bg-[length:200%_100%] px-6 font-medium text-white transition-colors focus:outline-none focus:ring-2 focus:ring-black focus:ring-offset-2 focus:ring-offset-white">
+    Sign Up
+</button>
+
+  
+       
+      
                     </div>
 
                 </div>
