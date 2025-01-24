@@ -1,4 +1,5 @@
-import { TypewriterEffectSmooth } from './ui/SHome'
+// @ts-ignore
+import { TypewriterEffectSmooth } from "./ui/shooting-stars"
 
 function Quotes() {
     return (
