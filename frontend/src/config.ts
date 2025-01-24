@@ -1,1 +1,1 @@
-export const BACKEND_URL = " https://backend.204g1a3254.workers.dev"
+export const BACKEND_URL = import.meta.env.VITE_BACKEND_URL!;
