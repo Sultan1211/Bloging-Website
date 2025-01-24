@@ -49,7 +49,7 @@ function Auth({ type }: { type: "signup" | "signin" }) {
                     </div>
                     {type === "signup" ? <div>
                         <InputFields label="Name" placeholder='Tyler Durden' onChange={(e) => {
-                            setInputs(c => ({
+                            setInputs((c:any) => ({
                                 ...c,
                                 name: e.target.value
                             }))
@@ -57,7 +57,7 @@ function Auth({ type }: { type: "signup" | "signin" }) {
                     </div> : null}
                     <div>
                         <InputFields label="UserName" placeholder='TylerDurden@gmail.com' onChange={(e) => {
-                            setInputs(c => ({
+                            setInputs((c:any) => ({
                                 ...c,
                                 email: e.target.value
                             }))
@@ -65,7 +65,7 @@ function Auth({ type }: { type: "signup" | "signin" }) {
                     </div>
                     <div>
                         <InputFields label="Password" type="password" placeholder='123$%^*' onChange={(e) => {
-                            setInputs(c => ({
+                            setInputs((c:any) => ({
                                 ...c,
                                 password: e.target.value
                             }))
