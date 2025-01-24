@@ -1,4 +1,3 @@
-import React from 'react'
 import { Avatar } from './BlogCard'
 import { Link, useNavigate } from 'react-router-dom';
 import logo from '../logos/logo.png';
@@ -9,7 +8,7 @@ function Appbar() {
   const name : any = localStorage.getItem("name")
   const navigate = useNavigate();
   return (
-    <div className='border flex justify-between items-center h-16 w-full px-10'>
+    <div className='bg-white flex justify-between items-center h-16 w-full px-10'>
       <Link to={"/blogs"}>
         <div className='font-semibold h-16 w-20  '>
           <img

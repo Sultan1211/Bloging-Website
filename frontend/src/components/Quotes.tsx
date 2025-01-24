@@ -1,5 +1,5 @@
 import React from 'react'
-import { TypewriterEffectSmooth } from './UI/SHome'
+import { TypewriterEffectSmooth } from './ui/SHome'
 
 function Quotes() {
     return (

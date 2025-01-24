@@ -3,7 +3,15 @@ import Appbar from './Appbar'
 import { Avatar } from './BlogCard'
 import { Blog } from '../hooks'
 
-function FullBlog({ blog }: { blog: Blog }) {
+function FullBlog({ blog }: { blog?: Blog }) {
+    if (!blog) {
+        return (
+          <div className="h-screen">
+            <Appbar />
+            <p>Blog content not available.</p>
+          </div>
+        );
+      }
     return (
         <div className='h-screen'>
             <Appbar />
