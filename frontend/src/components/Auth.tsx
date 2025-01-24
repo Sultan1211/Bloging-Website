@@ -1,4 +1,4 @@
-import { ChangeEvent, EventHandler, useState } from 'react'
+import { ChangeEvent, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { signupInput } from '@syedsultan/commonzod';
 import axios from 'axios';
@@ -44,7 +44,7 @@ function Auth({ type }: { type: "signup" | "signin" }) {
                         </div>
                         <div className='text-center text-slate-500'>
                             {type === "signup" ? "Already have an acc?" : "Don't have an account?"}
-                            <Link className='pl-2 underline hover:text-blue-500' to={type === "signup" ? "/signin" : "/signup"}>{type === "signup" ? "Login" : "SignUp"}</Link>
+                            <Link className='pl-2 underline hover:text-blue-500' to={type === "signup" ? "/signin" : "/"}>{type === "signup" ? "Login" : "SignUp"}</Link>
                         </div>
                     </div>
                     {type === "signup" ? <div>
@@ -74,8 +74,8 @@ function Auth({ type }: { type: "signup" | "signin" }) {
                     <div className='pt-5'>
 
                     <button onClick={sendRequest} className="inline-flex w-full h-12 animate-shimmer items-center justify-center rounded-md border border-slate-800 bg-[linear-gradient(110deg,#000000,45%,rgba(255,255,255,0.6),55%,#000000)] bg-black bg-[length:200%_100%] px-6 font-medium text-white transition-colors focus:outline-none focus:ring-2 focus:ring-black focus:ring-offset-2 focus:ring-offset-white">
-    Sign Up
-</button>
+                        {type === "signup" ? "Sign Up" : "Login"}
+                    </button>
 
   
        

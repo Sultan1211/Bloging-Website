@@ -1,30 +1,39 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
-import { BrowserRouter, Route, Routes } from 'react-router-dom'
-import Signup from './pages/Signup'
-import Signin from './pages/Signin'
-import Blog from './pages/Blog'
-import Blogs from './pages/Blogs'
-import Publish from './pages/Publish'
+import './App.css';
+import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
+import Signup from './pages/Signup';
+import Signin from './pages/Signin';
+import Blog from './pages/Blog';
+import Blogs from './pages/Blogs';
+import Publish from './pages/Publish';
+import ProtectedRoute from './pages/ProtectedRoute';
 
 function App() {
- 
-
   return (
-    <>
-     <BrowserRouter>
-     <Routes>
-      <Route path="/" element={<Signup></Signup>}></Route>
-      <Route path="/signin" element={<Signin/>}></Route>
-      <Route path="/blog/:id" element={<Blog/>}></Route>
-      <Route path="/blogs" element={<Blogs/>}></Route>
-      <Route path="/publish" element={<Publish/>}></Route>
-     </Routes>
-     </BrowserRouter>
-    </>
-  )
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Signup />} />
+        <Route path="/signin" element={<Signin />} />
+
+        {/* Use ProtectedRoute to wrap the protected routes */}
+        <Route element={<ProtectedRoute />}>
+        <Route 
+          path="/blog/:id" 
+          element={<Blog />} 
+        />
+        <Route 
+          path="/blogs" 
+          element={<Blogs />} 
+        />
+        <Route 
+          path="/publish" 
+          element={<Publish />} 
+        />
+        </Route>
+
+        <Route path="*" element={<Navigate to="/signin" />} />
+      </Routes>
+    </BrowserRouter>
+  );
 }
 
-export default App
+export default App;

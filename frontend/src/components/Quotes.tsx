@@ -1,4 +1,3 @@
-import React from 'react'
 import { TypewriterEffectSmooth } from './ui/SHome'
 
 function Quotes() {
