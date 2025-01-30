@@ -57,7 +57,7 @@ Check out the live version of **VerseLine**! [Live Link](#)
 Clone the repository:
 
 ```bash
-git clone https://github.com/yourusername/verseline.git
+git clone https://github.com/Sultan1211/Bloging-Website
 
 ⁕ Install dependencies: ⟬ npm install ⟭
 
