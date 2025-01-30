@@ -50,7 +50,7 @@ VerseLine is a **scalable blogging application** built with the **MERN stack**, 
 
 ## 🔗 Live Demo
 
-Check out the live version of **VerseLine**! [Live Link](#)
+Check out the live version of **VerseLine**! [Live Link](https://bloging-website-hbpm.vercel.app/)
 
 ## 🧑‍💻 Getting Started
 
